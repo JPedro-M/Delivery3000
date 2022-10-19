@@ -1,13 +1,22 @@
 package com.example.delivery3000;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.ktx.Firebase;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,6 +34,30 @@ public class Form_Cadastro extends AppCompatActivity {
         etNome.addTextChangedListener(cadastroTW);
         etEmail.addTextChangedListener(cadastroTW);
         etSenha.addTextChangedListener(cadastroTW);
+
+        btCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastrarUsu(view);
+            }
+        });
+    }
+
+    public void cadastrarUsu(View view){
+        String email, senha;
+
+        email = etEmail.getText().toString();
+        senha = etSenha.getText().toString();
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Snackbar sb = Snackbar.make(view, "Cadastrado com sucesso", Snackbar.LENGTH_INDEFINITE);
+                    sb.show();
+                }
+            }
+        });
     }
 
     private void iniciarComponentes() {
