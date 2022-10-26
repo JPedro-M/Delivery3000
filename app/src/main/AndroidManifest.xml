@@ -4,6 +4,7 @@
     package="com.example.delivery3000">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,6 +17,9 @@
         android:theme="@style/Theme.Delivery3000"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".lista_produtos"
+            android:exported="false" />
         <activity
             android:name=".Form_Cadastro"
             android:exported="false" />
