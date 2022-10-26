@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_menu_lateral"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/btperfil"
+                android:icon="@drawable/ic_menu_person"
+                android:title="Perfil"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/btPedidos"
+                android:icon="@drawable/ic_baseline_shopping_cart_24"
+                android:title="Pedidos"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/btSair"
+                android:icon="@drawable/ic_menu_exit"
+                android:title="Sair"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+</menu>
