@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.ktx.Firebase;
 
 public class Form_Login extends AppCompatActivity {
     private TextView txtCadastro, txtErro;
@@ -61,6 +63,16 @@ public class Form_Login extends AppCompatActivity {
         txtErro = findViewById(R.id.txtErro);
         btLogar = findViewById(R.id.btEntrar);
         pbLogar = findViewById(R.id.pbTelaPrincipal);
+    }
+
+    public void onStart(){
+        super.onStart();
+
+        FirebaseUser usuAtual = FirebaseAuth.getInstance().getCurrentUser();
+        if (usuAtual != null){
+            Intent i = new Intent(Form_Login.this, Form_Cadastro.class);
+            startActivity(i);
+        }
     }
     public void logar(String email, String senha){
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
